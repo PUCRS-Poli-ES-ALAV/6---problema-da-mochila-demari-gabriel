@@ -30,22 +30,45 @@ public class Main {
         
         // System.out.println("BACKPACK DE 15: " + backpack(w, v, W, n, c) + " COM " + c.getCount() + " OPERAÇÕES");
 
-        Item[] itens = new Item[7];
-        int pesomochila = 190;
-        itens[0] = null;
-        //  Pesos:  56, 59, 80, 64, 75, 17
+        // Item[] itens = new Item[7];
+        // int pesomochila = 190;
+        // itens[0] = null;
+        // //  Pesos:  56, 59, 80, 64, 75, 17
 
-        //Valores: 50, 50, 64, 46, 50, 05
-        itens[1] = new Item(50, 56);
-        itens[2] = new Item(50, 59);
-        itens[3] = new Item(64, 80);
-        itens[4] = new Item(46, 64);
-        itens[5] = new Item(50, 75);
-        itens[6] = new Item(5, 17);
-        System.out.println("BACKPACK DE " + pesomochila + ": " + backPackPD(itens.length -1, pesomochila, itens, c) + " COM " + c.getCount() + " OPERAÇÕES");
+        // //Valores: 50, 50, 64, 46, 50, 05
+        // itens[1] = new Item(50, 56);
+        // itens[2] = new Item(50, 59);
+        // itens[3] = new Item(64, 80);
+        // itens[4] = new Item(46, 64);
+        // itens[5] = new Item(50, 75);
+        // itens[6] = new Item(5, 17);
+        // System.out.println("BACKPACK DE " + pesomochila + ": " + backPackPD(itens.length -1, pesomochila, itens, c) + " COM " + c.getCount() + " OPERAÇÕES");
 
+
+        String s1 = "Casablanca";
+        String s2 = "Portentoso";
+
+        int dist = EDdinamico(s1, s2, c);
+        System.out.println("Distância de ED entre " + s1 + " e " + s2 + " é " + dist + " com " + c.getCount() + " operações");          
+
+        s1 = "Maven, a Yiddish word meaning accumulator of knowledge, began as an attempt to " +
+   			"simplify the build processes in the Jakarta Turbine project. There were several" + 
+   			" projects, each with their own Ant build files, that were all slightly different." +
+   			"JARs were checked into CVS. We wanted a standard way to build the projects, a clear "+ 
+   			"definition of what the project consisted of, an easy way to publish project information" +
+   			"and a way to share JARs across several projects. The result is a tool that can now be" +
+   			"used for building and managing any Java-based project. We hope that we have created " +
+   			"something that will make the day-to-day work of Java developers easier and generally help " +
+   			"with the comprehension of any Java-based project.";
+        s2 = "This post is not about deep learning. But it could be might as well. This is the power of " +
+   			"kernels. They are universally applicable in any machine learning algorithm. Why you might" +
+   			"ask? I am going to try to answer this question in this article." + 
+   		        "Go to the profile of Marin Vlastelica Pogančić" + 
+   		        "Marin Vlastelica Pogančić Jun";
         
 
+        dist = EDdinamico(s1, s2, c);
+        System.out.println("Distância de ED entre " + s1 + " e " + s2 + " é " + dist + " com " + c.getCount() + " operações");    
 
     }
 
@@ -109,4 +132,62 @@ public class Main {
 
         return maxTab[n][c];
     }
+
+    public static int ED(String S, String T, int i, int j)
+        {
+            if (j == -1 || i == -1)
+            {
+                return Math.abs(j - i);
+            }
+
+            if (S.charAt(i) == T.charAt(j))
+            {
+                return ED(S, T, i - 1, j - 1);
+            }
+            else
+            {
+                // CAS MET
+                var substitution = ED(S, T, i - 1, j - 1) + 1;
+
+                //CAS ME
+                var insertion = ED(S, T, i, j - 1) + 1;
+
+                //CA MET
+                var deletion = ED(S, T, i - 1, j) + 1;
+                return Math.min(substitution, Math.min(insertion, deletion));
+            }
+        }
+
+
+        public static int EDdinamico(String a, String b, Contador c) {
+            int l1 = a.length();
+            int l2 = b.length();
+
+            int[][] d = new int[l1 + 1][l2 + 1];
+            d[0][0] = 0;
+            for(int i = 1; i < l1; i++) {
+                d[i][0] = d[i - 1][0] + 1;
+                c.increment();
+            }
+
+            for(int j = 1; j < l2; j++) {
+                d[0][j] = d[0][j - 1] + 1;
+                c.increment();
+            }
+
+            for(int i = 1; i <= l1; i++) {
+                for(int j = 1; j <= l2; j++) {
+                    int cost = a.charAt(i - 1) == b.charAt(j - 1) ? 0 : 1;
+                    c.increment();
+
+                    d[i][j] = Minimo(d[i-1][j] + 1,d[i][j-1] + 1, d[i-1][j-1] + cost);
+                }
+            }
+            return d[l1][l2];
+        }
+
+        private static int Minimo(int a, int b, int c) {
+            return Math.min(Math.min(a, b), c);
+        }
+
 }
