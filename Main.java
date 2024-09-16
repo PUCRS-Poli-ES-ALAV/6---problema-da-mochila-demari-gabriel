@@ -30,14 +30,19 @@ public class Main {
         
         // System.out.println("BACKPACK DE 15: " + backpack(w, v, W, n, c) + " COM " + c.getCount() + " OPERAÇÕES");
 
-        Item[] itens = new Item[6];
+        Item[] itens = new Item[7];
+        int pesomochila = 190;
         itens[0] = null;
-        itens[1] = new Item(2, 2);
-        itens[2] = new Item(1, 1);
-        itens[3] = new Item(2, 1);
-        itens[4] = new Item(10, 4);
-        itens[5] = new Item(4, 12);
-        System.out.println("BACKPACK DE 15: " + backPackPD(itens.length -1, 15, itens, c) + " COM " + c.getCount() + " OPERAÇÕES");
+        //  Pesos:  56, 59, 80, 64, 75, 17
+
+        //Valores: 50, 50, 64, 46, 50, 05
+        itens[1] = new Item(50, 56);
+        itens[2] = new Item(50, 59);
+        itens[3] = new Item(64, 80);
+        itens[4] = new Item(46, 64);
+        itens[5] = new Item(50, 75);
+        itens[6] = new Item(5, 17);
+        System.out.println("BACKPACK DE " + pesomochila + ": " + backPackPD(itens.length -1, pesomochila, itens, c) + " COM " + c.getCount() + " OPERAÇÕES");
 
         
 
@@ -89,8 +94,8 @@ public class Main {
         int[][] maxTab = new int[n+1][c+1];
 
 
-        for(int i = 0; i <= n; i++){
-            for(int j = 0; j <= c; j++){
+        for(int i = 1; i <= n; i++){
+            for(int j = 1; j <= c; j++){
                 cont.increment();
                 if(i == 0 || j == 0){
                     maxTab[i][j] = 0;
