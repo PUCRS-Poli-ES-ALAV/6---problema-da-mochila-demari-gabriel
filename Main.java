@@ -13,12 +13,12 @@ public class Main {
         System.out.println("FIBONACCI RECURSIVO DE 16: " + FIBO_REC(16));
         c.setN(32);
         System.out.println("FIBONACCI RECURSIVO DE 32: " + FIBO_REC(32));
-        c.setN(128);
-        System.out.println("FIBONACCI RECURSIVO DE 128: " + FIBO_REC(128));
-        c.setN(1000);
-        System.out.println("FIBONACCI RECURSIVO DE 1000: " + FIBO_REC(1000));
-        c.setN(10000);
-        System.out.println("FIBONACCI RECURSIVO DE 10000: " + FIBO_REC(10000));
+        // c.setN(128);
+        // System.out.println("FIBONACCI RECURSIVO DE 128: " + FIBO_REC(128));
+        // c.setN(1000);
+        // System.out.println("FIBONACCI RECURSIVO DE 1000: " + FIBO_REC(1000));
+        // c.setN(10000);
+        // System.out.println("FIBONACCI RECURSIVO DE 10000: " + FIBO_REC(10000));
         c.toCSV("fiborecursivo");
 
         c.startAgain();
@@ -34,72 +34,83 @@ public class Main {
 
         c.startAgain();
         c.setN(4);
-        System.out.println("FIBONACCI MEMOIZED DE 4: " + MEMOIZED_FIBO(new int[4], 4));
+        System.out.println("FIBONACCI MEMOIZED DE 4: " + MEMOIZED_FIBO(new int[5], 4));
         c.setN(8);
-        System.out.println("FIBONACCI MEMOIZED DE 8: " + MEMOIZED_FIBO(new int[8], 8));
+        System.out.println("FIBONACCI MEMOIZED DE 8: " + MEMOIZED_FIBO(new int[9], 8));
         c.setN(16);
-        System.out.println("FIBONACCI MEMOIZED DE 16: " + MEMOIZED_FIBO(new int[16], 16));
+        System.out.println("FIBONACCI MEMOIZED DE 16: " + MEMOIZED_FIBO(new int[17], 16));
         c.setN(32);
-        System.out.println("FIBONACCI MEMOIZED DE 32: " + MEMOIZED_FIBO(new int[32], 32));
+        System.out.println("FIBONACCI MEMOIZED DE 32: " + MEMOIZED_FIBO(new int[33], 32));
         c.setN(128);
-        System.out.println("FIBONACCI MEMOIZED DE 128: " + MEMOIZED_FIBO(new int[128], 128));
+        System.out.println("FIBONACCI MEMOIZED DE 128: " + MEMOIZED_FIBO(new int[129], 128));
         c.setN(1000);
-        System.out.println("FIBONACCI MEMOIZED DE 1000: " + MEMOIZED_FIBO(new int[1000], 1000));
+        System.out.println("FIBONACCI MEMOIZED DE 1000: " + MEMOIZED_FIBO(new int[1001], 1000));
         c.setN(10000);
-        System.out.println("FIBONACCI MEMOIZED DE 10000: " + MEMOIZED_FIBO(new int[10000], 10000));
+        System.out.println("FIBONACCI MEMOIZED DE 10000: " + MEMOIZED_FIBO(new int[10001], 10000));
         c.toCSV("fibomemoized");
 
-        // int[] w = {2,1,1,4,12};
-        // int[] v = {2,1,2,10,4};
-        // int W = 15;
-        // int n = w.length;
+        c.startAgain();
+        int[] w = {2,1,1,4,12};
+        int[] v = {2,1,2,10,4};
+        int W = 15;
+        int n = w.length;
+        c.setN(15);
+        System.out.println("BACKPACK DE 15: " + backpack(w, v, W, n));
+        c.toCSV("mochilaRecursiva");
+
+        c.startAgain();
+        Item[] itens = new Item[7];
+        int pesomochila = 190;
+        itens[0] = null;
+        //  Pesos:  56, 59, 80, 64, 75, 17
+
+        //Valores: 50, 50, 64, 46, 50, 05
+        itens[1] = new Item(50, 56);
+        itens[2] = new Item(50, 59);
+        itens[3] = new Item(64, 80);
+        itens[4] = new Item(46, 64);
+        itens[5] = new Item(50, 75);
+        itens[6] = new Item(5, 17);
+        c.setN(190);
+        System.out.println("BACKPACK DE " + pesomochila + ": " + backPackPD(itens.length -1, pesomochila, itens, c));
+        c.toCSV("mochilaDinamica");
+
+
+        c.startAgain();
+        String s1 = "Casablanca";
+        String s2 = "Portentoso";
+
+        int dist = EDdinamico(s1, s2);
+        c.setN(20);
+        System.out.println("Distância de ED entre " + s1 + " e " + s2 + " é " + dist);
+
+        c.setN(400);
+
+        s1 = "Maven, a Yiddish word meaning accumulator of knowledge, began as an attempt to " +
+   			"simplify the build processes in the Jakarta Turbine project. There were several" + 
+   			" projects, each with their own Ant build files, that were all slightly different." +
+   			"JARs were checked into CVS. We wanted a standard way to build the projects, a clear "+ 
+   			"definition of what the project consisted of, an easy way to publish project information" +
+   			"and a way to share JARs across several projects. The result is a tool that can now be" +
+   			"used for building and managing any Java-based project. We hope that we have created " +
+   			"something that will make the day-to-day work of Java developers easier and generally help " +
+   			"with the comprehension of any Java-based project.";
+        s2 = "This post is not about deep learning. But it could be might as well. This is the power of " +
+   			"kernels. They are universally applicable in any machine learning algorithm. Why you might" +
+   			"ask? I am going to try to answer this question in this article." + 
+   		        "Go to the profile of Marin Vlastelica Pogančić" + 
+   		        "Marin Vlastelica Pogančić Jun";
         
-        // System.out.println("BACKPACK DE 15: " + backpack(w, v, W, n, c) + " COM " + c.getCount() + " OPERAÇÕES");
 
-        // Item[] itens = new Item[7];
-        // int pesomochila = 190;
-        // itens[0] = null;
-        // //  Pesos:  56, 59, 80, 64, 75, 17
-
-        // //Valores: 50, 50, 64, 46, 50, 05
-        // itens[1] = new Item(50, 56);
-        // itens[2] = new Item(50, 59);
-        // itens[3] = new Item(64, 80);
-        // itens[4] = new Item(46, 64);
-        // itens[5] = new Item(50, 75);
-        // itens[6] = new Item(5, 17);
-        // System.out.println("BACKPACK DE " + pesomochila + ": " + backPackPD(itens.length -1, pesomochila, itens, c) + " COM " + c.getCount() + " OPERAÇÕES");
-
-
-        // String s1 = "Casablanca";
-        // String s2 = "Portentoso";
-
-        // int dist = EDdinamico(s1, s2, c);
-        // System.out.println("Distância de ED entre " + s1 + " e " + s2 + " é " + dist + " com " + c.getCount() + " operações");          
-
-        // s1 = "Maven, a Yiddish word meaning accumulator of knowledge, began as an attempt to " +
-   		// 	"simplify the build processes in the Jakarta Turbine project. There were several" + 
-   		// 	" projects, each with their own Ant build files, that were all slightly different." +
-   		// 	"JARs were checked into CVS. We wanted a standard way to build the projects, a clear "+ 
-   		// 	"definition of what the project consisted of, an easy way to publish project information" +
-   		// 	"and a way to share JARs across several projects. The result is a tool that can now be" +
-   		// 	"used for building and managing any Java-based project. We hope that we have created " +
-   		// 	"something that will make the day-to-day work of Java developers easier and generally help " +
-   		// 	"with the comprehension of any Java-based project.";
-        // s2 = "This post is not about deep learning. But it could be might as well. This is the power of " +
-   		// 	"kernels. They are universally applicable in any machine learning algorithm. Why you might" +
-   		// 	"ask? I am going to try to answer this question in this article." + 
-   		//         "Go to the profile of Marin Vlastelica Pogančić" + 
-   		//         "Marin Vlastelica Pogančić Jun";
-        
-
-        // dist = EDdinamico(s1, s2, c);
-        // System.out.println("Distância de ED entre " + s1 + " e " + s2 + " é " + dist + " com " + c.getCount() + " operações");    
+        dist = EDdinamico(s1, s2);
+        System.out.println("Distância de ED entre " + s1 + " e " + s2 + " é " + dist);    
+        c.toCSV("EDdinamico");
 
     }
 
     public static int FIBO_REC(int n){
         if(n <= 1) return n;
+        c.increment();
         return FIBO_REC(n-1) + FIBO_REC(n-2);
     }
 
@@ -109,20 +120,22 @@ public class Main {
         f[1] = 1;
         for(int i=2; i <= n; i++){
             f[i] = f[i-1] + f[i-2];
+            c.increment();
         }
         return f[n];
     }
 
     public static int MEMOIZED_FIBO(int[] f, int n) {
-        for(int i = 0; i < n; i++) {
+        for(int i = 0; i <= n; i++) {
             f[i] = -1;
         }
         return LOOKUP_FIBO(f,n);
     }
 
     private static int LOOKUP_FIBO(int[] f, int n) {
+        c.increment();
         if(f[n] >= 0) return f[n];
-        if(f[n] <= 1) {
+        if(n <= 1) {
             f[n] = n;
         }else {
             f[n] = LOOKUP_FIBO(f, n - 1) + LOOKUP_FIBO(f, n - 2);   
@@ -132,11 +145,11 @@ public class Main {
     }
 
 
-    private static int backpack(int[] w, int[] v, int W, int n, Contador c) {
+    private static int backpack(int[] w, int[] v, int W, int n) {
         c.increment();
         if(n == 0 || W == 0) return 0;
-        if(w[n-1] > W) return backpack(w, v, W, n-1, c);
-        return Math.max(v[n-1] + backpack(w, v, W - w[n-1], n-1, c), backpack(w, v, W, n-1, c));
+        if(w[n-1] > W) return backpack(w, v, W, n-1);
+        return Math.max(v[n-1] + backpack(w, v, W - w[n-1], n-1), backpack(w, v, W, n-1));
     }
 
     public static int backPackPD(int n, int c, Item[] itens, Contador cont){
@@ -161,6 +174,7 @@ public class Main {
 
     public static int ED(String S, String T, int i, int j)
         {
+            c.increment();
             if (j == -1 || i == -1)
             {
                 return Math.abs(j - i);
@@ -185,7 +199,7 @@ public class Main {
         }
 
 
-        public static int EDdinamico(String a, String b, Contador c) {
+        public static int EDdinamico(String a, String b) {
             int l1 = a.length();
             int l2 = b.length();
 
