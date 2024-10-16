@@ -1,27 +1,53 @@
 public class Main {
 
+    public static Contador c = new Contador();
+
     public static void main(String[] args) {
 
-        Contador c = new Contador();
+        c.startAgain();
+        c.setN(4);
+        System.out.println("FIBONACCI RECURSIVO DE 4: " + FIBO_REC(4));
+        c.setN(8);
+        System.out.println("FIBONACCI RECURSIVO DE 8: " + FIBO_REC(8));
+        c.setN(16);
+        System.out.println("FIBONACCI RECURSIVO DE 16: " + FIBO_REC(16));
+        c.setN(32);
+        System.out.println("FIBONACCI RECURSIVO DE 32: " + FIBO_REC(32));
+        c.setN(128);
+        System.out.println("FIBONACCI RECURSIVO DE 128: " + FIBO_REC(128));
+        c.setN(1000);
+        System.out.println("FIBONACCI RECURSIVO DE 1000: " + FIBO_REC(1000));
+        c.setN(10000);
+        System.out.println("FIBONACCI RECURSIVO DE 10000: " + FIBO_REC(10000));
+        c.toCSV("fiborecursivo");
 
-        // System.out.println("FIBONACCI RECURSIVO DE 4: " + FIBO_REC(4));
-        // System.out.println("FIBONACCI RECURSIVO DE 8: " + FIBO_REC(8));
-        // System.out.println("FIBONACCI RECURSIVO DE 16: " + FIBO_REC(16));
-        // System.out.println("FIBONACCI RECURSIVO DE 32: " + FIBO_REC(32));
-        // System.out.println("FIBONACCI DINÂMICO DE 4: " + FIBO(4));
-        // System.out.println("FIBONACCI DINÂMICO DE 8: " + FIBO(8));
-        // System.out.println("FIBONACCI DINÂMICO DE 16: " + FIBO(16));
-        // System.out.println("FIBONACCI DINÂMICO DE 32: " + FIBO(32));
-        // System.out.println("FIBONACCI RECURSIVO DE 128: " + FIBO_REC(128));
-        // System.out.println("FIBONACCI RECURSIVO DE 1000: " + FIBO_REC(1000));
-        // System.out.println("FIBONACCI RECURSIVO DE 10000: " + FIBO_REC(10000));
-        // System.out.println("FIBONACCI MEMOIZED DE 4: " + MEMOIZED_FIBO(new int[4], 4));
-        // System.out.println("FIBONACCI MEMOIZED DE 8: " + MEMOIZED_FIBO(new int[8], 8));
-        // System.out.println("FIBONACCI MEMOIZED DE 16: " + MEMOIZED_FIBO(new int[16], 16));
-        // System.out.println("FIBONACCI MEMOIZED DE 32: " + MEMOIZED_FIBO(new int[32], 32));
-        // System.out.println("FIBONACCI MEMOIZED DE 128: " + MEMOIZED_FIBO(new int[128], 128));
-        // System.out.println("FIBONACCI MEMOIZED DE 1000: " + MEMOIZED_FIBO(new int[1000], 1000));
-        // System.out.println("FIBONACCI MEMOIZED DE 10000: " + MEMOIZED_FIBO(new int[10000], 10000));
+        c.startAgain();
+        c.setN(4);
+        System.out.println("FIBONACCI DINÂMICO DE 4: " + FIBO(4));
+        c.setN(8);
+        System.out.println("FIBONACCI DINÂMICO DE 8: " + FIBO(8));
+        c.setN(16);
+        System.out.println("FIBONACCI DINÂMICO DE 16: " + FIBO(16));
+        c.setN(32);
+        System.out.println("FIBONACCI DINÂMICO DE 32: " + FIBO(32));
+        c.toCSV("fibodinamico");
+
+        c.startAgain();
+        c.setN(4);
+        System.out.println("FIBONACCI MEMOIZED DE 4: " + MEMOIZED_FIBO(new int[4], 4));
+        c.setN(8);
+        System.out.println("FIBONACCI MEMOIZED DE 8: " + MEMOIZED_FIBO(new int[8], 8));
+        c.setN(16);
+        System.out.println("FIBONACCI MEMOIZED DE 16: " + MEMOIZED_FIBO(new int[16], 16));
+        c.setN(32);
+        System.out.println("FIBONACCI MEMOIZED DE 32: " + MEMOIZED_FIBO(new int[32], 32));
+        c.setN(128);
+        System.out.println("FIBONACCI MEMOIZED DE 128: " + MEMOIZED_FIBO(new int[128], 128));
+        c.setN(1000);
+        System.out.println("FIBONACCI MEMOIZED DE 1000: " + MEMOIZED_FIBO(new int[1000], 1000));
+        c.setN(10000);
+        System.out.println("FIBONACCI MEMOIZED DE 10000: " + MEMOIZED_FIBO(new int[10000], 10000));
+        c.toCSV("fibomemoized");
 
         // int[] w = {2,1,1,4,12};
         // int[] v = {2,1,2,10,4};
@@ -45,30 +71,30 @@ public class Main {
         // System.out.println("BACKPACK DE " + pesomochila + ": " + backPackPD(itens.length -1, pesomochila, itens, c) + " COM " + c.getCount() + " OPERAÇÕES");
 
 
-        String s1 = "Casablanca";
-        String s2 = "Portentoso";
+        // String s1 = "Casablanca";
+        // String s2 = "Portentoso";
 
-        int dist = EDdinamico(s1, s2, c);
-        System.out.println("Distância de ED entre " + s1 + " e " + s2 + " é " + dist + " com " + c.getCount() + " operações");          
+        // int dist = EDdinamico(s1, s2, c);
+        // System.out.println("Distância de ED entre " + s1 + " e " + s2 + " é " + dist + " com " + c.getCount() + " operações");          
 
-        s1 = "Maven, a Yiddish word meaning accumulator of knowledge, began as an attempt to " +
-   			"simplify the build processes in the Jakarta Turbine project. There were several" + 
-   			" projects, each with their own Ant build files, that were all slightly different." +
-   			"JARs were checked into CVS. We wanted a standard way to build the projects, a clear "+ 
-   			"definition of what the project consisted of, an easy way to publish project information" +
-   			"and a way to share JARs across several projects. The result is a tool that can now be" +
-   			"used for building and managing any Java-based project. We hope that we have created " +
-   			"something that will make the day-to-day work of Java developers easier and generally help " +
-   			"with the comprehension of any Java-based project.";
-        s2 = "This post is not about deep learning. But it could be might as well. This is the power of " +
-   			"kernels. They are universally applicable in any machine learning algorithm. Why you might" +
-   			"ask? I am going to try to answer this question in this article." + 
-   		        "Go to the profile of Marin Vlastelica Pogančić" + 
-   		        "Marin Vlastelica Pogančić Jun";
+        // s1 = "Maven, a Yiddish word meaning accumulator of knowledge, began as an attempt to " +
+   		// 	"simplify the build processes in the Jakarta Turbine project. There were several" + 
+   		// 	" projects, each with their own Ant build files, that were all slightly different." +
+   		// 	"JARs were checked into CVS. We wanted a standard way to build the projects, a clear "+ 
+   		// 	"definition of what the project consisted of, an easy way to publish project information" +
+   		// 	"and a way to share JARs across several projects. The result is a tool that can now be" +
+   		// 	"used for building and managing any Java-based project. We hope that we have created " +
+   		// 	"something that will make the day-to-day work of Java developers easier and generally help " +
+   		// 	"with the comprehension of any Java-based project.";
+        // s2 = "This post is not about deep learning. But it could be might as well. This is the power of " +
+   		// 	"kernels. They are universally applicable in any machine learning algorithm. Why you might" +
+   		// 	"ask? I am going to try to answer this question in this article." + 
+   		//         "Go to the profile of Marin Vlastelica Pogančić" + 
+   		//         "Marin Vlastelica Pogančić Jun";
         
 
-        dist = EDdinamico(s1, s2, c);
-        System.out.println("Distância de ED entre " + s1 + " e " + s2 + " é " + dist + " com " + c.getCount() + " operações");    
+        // dist = EDdinamico(s1, s2, c);
+        // System.out.println("Distância de ED entre " + s1 + " e " + s2 + " é " + dist + " com " + c.getCount() + " operações");    
 
     }
 
